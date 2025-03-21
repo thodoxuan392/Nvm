@@ -41,9 +41,10 @@ bool NVM_WriteDataToNvm(NVM_BlockId blockId, void* data)
 	}
 	else
 	{
-		// Difference
 		// Update data to page data
 		memcpy(&pageData[blockByteOffset], data, blockByteLength);
+		// Erase NVM data first
+		NVM_Erase(pageAddress, NVM_PAGE_SIZE);
 		// Write data to NVM
 		NVM_Write(pageAddress, pageData, NVM_PAGE_SIZE);
 	}
