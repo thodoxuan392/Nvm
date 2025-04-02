@@ -22,11 +22,16 @@ bool NVM_WriteDataToNvm(NVM_BlockId blockId, void* data)
 	uint8_t pageData[NVM_PAGE_SIZE];
 	uint16_t blockByteOffset;
 	uint16_t blockByteLength;
+	void* ramDataPtr;
 
 	// Get prop
 	pageId = NVM_blockDescriptorTable[blockId].pageId;
 	blockByteOffset = NVM_blockDescriptorTable[blockId].byteOffset;
 	blockByteLength = NVM_blockDescriptorTable[blockId].byteLength;
+	ramDataPtr = NVM_blockDescriptorTable[blockId].ramData;
+
+	// Update RAM data
+	memcpy(ramDataPtr, data, blockByteLength);
 
 	// Get Page Address
 	pageAddress = NVM_GetAddressByPageId(pageId);
