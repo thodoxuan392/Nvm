@@ -53,6 +53,8 @@ bool NVM_WriteDataToNvm(NVM_BlockId blockId, void* data)
 		// Write data to NVM
 		NVM_Write(pageAddress, pageData, NVM_PAGE_SIZE);
 	}
+
+	return true;
 }
 
 bool NVM_ReadDataFromRam(NVM_BlockId blockId, void* data)
@@ -63,6 +65,8 @@ bool NVM_ReadDataFromRam(NVM_BlockId blockId, void* data)
 
 	// Copy data from ROM
 	memcpy(data, blockRamDataPtr, blockByteLength);
+
+	return true;
 }
 bool NVM_ReadDataFromRom(NVM_BlockId blockId, void* data)
 {
@@ -72,6 +76,8 @@ bool NVM_ReadDataFromRom(NVM_BlockId blockId, void* data)
 
 	// Copy data from ROM
 	memcpy(data, blockRomDataPtr, blockByteLength);
+
+	return true;
 }
 bool NVM_ReadDataFromNvm(NVM_BlockId blockId, void* data)
 {
